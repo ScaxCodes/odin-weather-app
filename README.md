@@ -1,2 +1,2 @@
 # odin-weather-app
-A weather forecast site using weather API, practicing asynchronous code.
+A weather forecast site using the weather API, practicing asynchronous code.
