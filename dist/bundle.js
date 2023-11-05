@@ -27,6 +27,7 @@ async function processWeather(location) {
   const weatherSelectedData = {};
   weatherSelectedData.name = weather.location.name;
   weatherSelectedData.celsius = weather.current.temp_c;
+  weatherSelectedData.fahrenheit = weather.current.temp_f;
   weatherSelectedData.text = weather.current.condition.text;
   weatherSelectedData.icon = weather.current.condition.icon;
   console.log(weatherSelectedData);
