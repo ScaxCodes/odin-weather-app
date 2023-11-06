@@ -30,14 +30,27 @@ async function processWeather(location) {
   weatherSelectedData.fahrenheit = weather.current.temp_f;
   weatherSelectedData.text = weather.current.condition.text;
   weatherSelectedData.icon = weather.current.condition.icon;
-  console.log(weatherSelectedData);
+  return weatherSelectedData;
+  // console.log(weatherSelectedData);
 }
+
 const searchButton = document.querySelector("#search");
 const inputField = document.querySelector("#location");
 searchButton.addEventListener("click", () => {
-  processWeather(inputField.value);
+  displayWeather(inputField.value);
+  inputField.value = "";
 });
-processWeather("mainz");
+async function displayWeather(location) {
+  const weather = await processWeather(location);
+  const city = document.querySelector(".city");
+  const temp = document.querySelector(".temp");
+  const text = document.querySelector(".text");
+  const icon = document.querySelector(".icon");
+  city.textContent = weather.name;
+  temp.textContent = `${weather.celsius}°`;
+  text.textContent = weather.text;
+  icon.innerHTML = `<img src="${weather.icon}">`;
+}
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
