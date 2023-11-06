@@ -18,7 +18,7 @@ body {
   /* justify-content: center; */
   align-items: center;
   gap: 10px;
-  width: 500px;
+  width: 550px;
   background-color: rosybrown;
   padding: 10px;
   margin: 10px;
@@ -26,6 +26,7 @@ body {
 }
 
 .current-container {
+  width: 500px;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -49,6 +50,10 @@ input {
 }
 
 .forecast {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   border: 1px solid rgb(192, 88, 88);
   border-radius: 10px;
   padding: 10px;
@@ -57,4 +62,16 @@ input {
 .footer-container {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+
+.current-container .text,
+.footer-container .text {
+  width: 250px;
+  margin-right: auto;
+}
+
+.city,
+.date {
+  font-weight: bold;
 }
