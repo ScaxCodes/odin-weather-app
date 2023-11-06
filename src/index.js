@@ -29,4 +29,11 @@ async function processWeather(location) {
   console.log(weatherSelectedData);
 }
 
+const searchButton = document.querySelector("#search");
+const inputField = document.querySelector("#location");
+
+searchButton.addEventListener("click", () => {
+  processWeather(inputField.value);
+});
+
 processWeather("mainz");
