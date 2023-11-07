@@ -6,6 +6,7 @@ async function fetchWeather(location) {
       { mode: "cors" },
     );
     const weatherJson = await response.json();
+    console.log(weatherJson);
     return weatherJson;
   } catch (error) {
     console.error(`Error: ${error.message}`);
