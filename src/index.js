@@ -1,4 +1,4 @@
-import { selectGIF } from "./gifLogic.js";
+import { displayGIF } from "./gifLogic.js";
 
 async function fetchWeather(location) {
   try {
@@ -110,7 +110,9 @@ async function displayWeather(location) {
   iconForecast.forEach((div, index) => {
     div.innerHTML = `<img src="${weather[`forecastDay${index + 2}`].icon}">`;
   });
+
+  // Display GIF
+  displayGIF(weather.current.text);
 }
 
 displayWeather("mainz");
-console.log(selectGIF("this is rainy weather"));

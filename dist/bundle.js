@@ -10,19 +10,17 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   selectGIF: () => (/* binding */ selectGIF)
+/* harmony export */   displayGIF: () => (/* binding */ displayGIF)
 /* harmony export */ });
 function selectGIF(text) {
   text = text.toLowerCase();
-  if (text.includes("ice") || text.includes("freez") || text.includes("blizzard")) return "ice"; // //media1.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif
-  else if (text.includes("snow")) return "snow"; // //media3.giphy.com/media/26tneSGWphvmFlUju/giphy.gif
-  else if (text.includes("sun")) return "sun"; // //media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif
-  else if (text.includes("rain")) return "rain"; // //media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif
-  else if (text.includes("cloud")) return "cloud"; // //media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif
-  else if (text.includes("fog")) return "fog";
-  // //media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif
+  if (text.includes("ice") || text.includes("freez") || text.includes("blizzard")) return "//media1.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif";else if (text.includes("snow")) return "//media3.giphy.com/media/26tneSGWphvmFlUju/giphy.gif";else if (text.includes("sun")) return "//media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif";else if (text.includes("rain")) return "//media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif";else if (text.includes("cloud")) return "//media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif";else if (text.includes("fog")) return "//media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif";else return 0;
 }
-
+function displayGIF(text) {
+  const elementGIF = document.querySelector(".gif");
+  const url = selectGIF(text);
+  if (url) elementGIF.innerHTML = `<img src="${url}">`;
+}
 
 
 /***/ })
@@ -181,9 +179,11 @@ async function displayWeather(location) {
   iconForecast.forEach((div, index) => {
     div.innerHTML = `<img src="${weather[`forecastDay${index + 2}`].icon}">`;
   });
+
+  // Display GIF
+  (0,_gifLogic_js__WEBPACK_IMPORTED_MODULE_0__.displayGIF)(weather.current.text);
 }
 displayWeather("mainz");
-console.log((0,_gifLogic_js__WEBPACK_IMPORTED_MODULE_0__.selectGIF)("this is rainy weather"));
 })();
 
 /******/ })()
