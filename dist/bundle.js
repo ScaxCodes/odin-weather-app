@@ -1,8 +1,97 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/gifLogic.js":
+/*!*************************!*\
+  !*** ./src/gifLogic.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   selectGIF: () => (/* binding */ selectGIF)
+/* harmony export */ });
+function selectGIF(text) {
+  text = text.toLowerCase();
+  if (text.includes("ice") || text.includes("freez") || text.includes("blizzard")) return "ice"; // //media1.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif
+  else if (text.includes("snow")) return "snow"; // //media3.giphy.com/media/26tneSGWphvmFlUju/giphy.gif
+  else if (text.includes("sun")) return "sun"; // //media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif
+  else if (text.includes("rain")) return "rain"; // //media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif
+  else if (text.includes("cloud")) return "cloud"; // //media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif
+  else if (text.includes("fog")) return "fog";
+  // //media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif
+}
+
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _gifLogic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gifLogic.js */ "./src/gifLogic.js");
+
 async function fetchWeather(location) {
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
@@ -10,7 +99,7 @@ async function fetchWeather(location) {
       mode: "cors"
     });
     const weatherJson = await response.json();
-    console.log(weatherJson);
+    // console.log(weatherJson);
     return weatherJson;
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -94,6 +183,9 @@ async function displayWeather(location) {
   });
 }
 displayWeather("mainz");
+console.log((0,_gifLogic_js__WEBPACK_IMPORTED_MODULE_0__.selectGIF)("this is rainy weather"));
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map

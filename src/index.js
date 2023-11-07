@@ -1,3 +1,5 @@
+import { selectGIF } from "./gifLogic.js";
+
 async function fetchWeather(location) {
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
@@ -6,7 +8,7 @@ async function fetchWeather(location) {
       { mode: "cors" },
     );
     const weatherJson = await response.json();
-    console.log(weatherJson);
+    // console.log(weatherJson);
     return weatherJson;
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -111,3 +113,4 @@ async function displayWeather(location) {
 }
 
 displayWeather("mainz");
+console.log(selectGIF("this is rainy weather"));
