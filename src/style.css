@@ -75,3 +75,8 @@ input {
 .date {
   font-weight: bold;
 }
+
+.current-container,
+.forecast {
+  display: none;
+}

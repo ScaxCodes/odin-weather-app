@@ -67,6 +67,12 @@ const inputField = document.querySelector("#location");
 
 searchButton.addEventListener("click", () => {
   displayWeather(inputField.value);
+  const currentDiv = document.querySelector(".current-container");
+  const forecastDivs = document.querySelectorAll(".forecast");
+  currentDiv.style.display = "flex";
+  forecastDivs.forEach((div) => {
+    div.style.display = "flex";
+  });
   inputField.value = "";
 });
 
@@ -115,4 +121,4 @@ async function displayWeather(location) {
   displayGIF(weather.current.text);
 }
 
-displayWeather("mainz");
+// displayWeather("mainz");

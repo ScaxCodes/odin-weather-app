@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function selectGIF(text) {
   text = text.toLowerCase();
-  if (text.includes("ice") || text.includes("freez") || text.includes("blizzard")) return "//media1.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif";else if (text.includes("snow")) return "//media3.giphy.com/media/26tneSGWphvmFlUju/giphy.gif";else if (text.includes("sun")) return "//media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif";else if (text.includes("rain")) return "//media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif";else if (text.includes("cloud")) return "//media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif";else if (text.includes("fog")) return "//media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif";else return 0;
+  if (text.includes("ice") || text.includes("freez") || text.includes("blizzard")) return "//media1.giphy.com/media/KFUx0Rtz7p0HTzbJ7x/giphy.gif";else if (text.includes("snow")) return "//media3.giphy.com/media/26tneSGWphvmFlUju/giphy.gif";else if (text.includes("sun")) return "//media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif";else if (text.includes("rain")) return "//media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif";else if (text.includes("cloud") || text.includes("overcast")) return "//media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif";else if (text.includes("fog")) return "//media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif";else return 0;
 }
 function displayGIF(text) {
   const elementGIF = document.querySelector(".gif");
@@ -140,6 +140,12 @@ const searchButton = document.querySelector("#search");
 const inputField = document.querySelector("#location");
 searchButton.addEventListener("click", () => {
   displayWeather(inputField.value);
+  const currentDiv = document.querySelector(".current-container");
+  const forecastDivs = document.querySelectorAll(".forecast");
+  currentDiv.style.display = "flex";
+  forecastDivs.forEach(div => {
+    div.style.display = "flex";
+  });
   inputField.value = "";
 });
 async function displayWeather(location) {
@@ -183,7 +189,8 @@ async function displayWeather(location) {
   // Display GIF
   (0,_gifLogic_js__WEBPACK_IMPORTED_MODULE_0__.displayGIF)(weather.current.text);
 }
-displayWeather("mainz");
+
+// displayWeather("mainz");
 })();
 
 /******/ })()
