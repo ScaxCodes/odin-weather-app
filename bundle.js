@@ -93,18 +93,26 @@ __webpack_require__.r(__webpack_exports__);
 let unitIsCelsius = true;
 function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
-  const currentCelsius = document.querySelector(".temp");
-  const currentFahrenheit = document.querySelector(".temp-f");
+  const celsiusDisplays = document.querySelectorAll(".temp");
+  const fahrenheitDisplays = document.querySelectorAll(".temp-f");
   if (unitIsCelsius) {
     temperatureUnitDisplay.textContent = "Fahrenheit";
     unitIsCelsius = false;
-    currentCelsius.style.display = "none";
-    currentFahrenheit.style.display = "block";
+    celsiusDisplays.forEach(div => {
+      div.style.display = "none";
+    });
+    fahrenheitDisplays.forEach(div => {
+      div.style.display = "block";
+    });
   } else {
     temperatureUnitDisplay.textContent = "Celsius";
     unitIsCelsius = true;
-    currentCelsius.style.display = "block";
-    currentFahrenheit.style.display = "none";
+    celsiusDisplays.forEach(div => {
+      div.style.display = "block";
+    });
+    fahrenheitDisplays.forEach(div => {
+      div.style.display = "none";
+    });
   }
 }
 async function fetchWeather(location) {
@@ -189,6 +197,7 @@ async function displayWeather(location) {
   // Select forecast DOM
   const dateForecast = document.querySelectorAll(".forecast .date");
   const tempForecast = document.querySelectorAll(".forecast .temp");
+  const tempFForecast = document.querySelectorAll(".forecast .temp-f");
   const textForecast = document.querySelectorAll(".forecast .text");
   const iconForecast = document.querySelectorAll(".forecast .icon");
 
@@ -200,6 +209,12 @@ async function displayWeather(location) {
     div.textContent = `
     ${weather[`forecastDay${index + 2}`].mintemp_c}° - 
     ${weather[`forecastDay${index + 2}`].maxtemp_c}°
+    `;
+  });
+  tempFForecast.forEach((div, index) => {
+    div.textContent = `
+    ${weather[`forecastDay${index + 2}`].mintemp_f}° - 
+    ${weather[`forecastDay${index + 2}`].maxtemp_f}°
     `;
   });
   textForecast.forEach((div, index) => {
