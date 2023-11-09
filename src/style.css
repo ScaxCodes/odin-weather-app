@@ -90,3 +90,7 @@ input {
 .forecast {
   display: none;
 }
+
+.temp-f {
+  display: none;
+}
