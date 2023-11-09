@@ -90,6 +90,17 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _gifLogic_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gifLogic.js */ "./src/gifLogic.js");
 
+let unitIsCelsius = true;
+function temptoggle() {
+  const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
+  if (unitIsCelsius) {
+    temperatureUnitDisplay.textContent = "Fahrenheit";
+    unitIsCelsius = false;
+  } else {
+    temperatureUnitDisplay.textContent = "Celsius";
+    unitIsCelsius = true;
+  }
+}
 async function fetchWeather(location) {
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
@@ -138,6 +149,7 @@ async function processWeather(location) {
 }
 const searchButton = document.querySelector("#search");
 const inputField = document.querySelector("#location");
+const toggleButton = document.querySelector("#toggle");
 searchButton.addEventListener("click", () => {
   displayWeather(inputField.value);
   const currentDiv = document.querySelector(".current-container");
@@ -147,6 +159,9 @@ searchButton.addEventListener("click", () => {
     div.style.display = "flex";
   });
   inputField.value = "";
+});
+toggleButton.addEventListener("click", () => {
+  temptoggle();
 });
 async function displayWeather(location) {
   const weather = await processWeather(location);

@@ -35,8 +35,18 @@ body {
   padding: 10px;
 }
 
-.temp-toggle {
+.temp-toggle div,
+.temp-toggle button {
   font-size: 0.7rem;
+}
+
+.temp-toggle div {
+  width: 70px;
+}
+
+.temp-toggle {
+  display: flex;
+  gap: 10px;
 }
 
 button {
