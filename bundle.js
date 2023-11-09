@@ -93,12 +93,18 @@ __webpack_require__.r(__webpack_exports__);
 let unitIsCelsius = true;
 function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
+  const currentCelsius = document.querySelector(".temp");
+  const currentFahrenheit = document.querySelector(".temp-f");
   if (unitIsCelsius) {
     temperatureUnitDisplay.textContent = "Fahrenheit";
     unitIsCelsius = false;
+    currentCelsius.style.display = "none";
+    currentFahrenheit.style.display = "block";
   } else {
     temperatureUnitDisplay.textContent = "Celsius";
     unitIsCelsius = true;
+    currentCelsius.style.display = "block";
+    currentFahrenheit.style.display = "none";
   }
 }
 async function fetchWeather(location) {
@@ -169,12 +175,14 @@ async function displayWeather(location) {
   // Select current DOM
   const city = document.querySelector(".city");
   const temp = document.querySelector(".temp");
+  const tempF = document.querySelector(".temp-f");
   const text = document.querySelector(".text");
   const icon = document.querySelector(".icon");
 
   // Fill current DOM
   city.textContent = weather.current.name;
   temp.textContent = `${weather.current.celsius}°`;
+  tempF.textContent = `${weather.current.fahrenheit}°`;
   text.textContent = weather.current.text;
   icon.innerHTML = `<img src="${weather.current.icon}">`;
 
