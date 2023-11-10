@@ -122,7 +122,7 @@ async function fetchWeather(location) {
       mode: "cors"
     });
     const weatherJson = await response.json();
-    // console.log(weatherJson);
+    console.log(weatherJson);
     return weatherJson;
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -130,6 +130,10 @@ async function fetchWeather(location) {
 }
 async function processWeather(location) {
   const weather = await fetchWeather(location);
+  if (weather.error) {
+    console.log("ERROR OCCURRED");
+    return 1;
+  }
   const weatherSelectedData = {
     current: {},
     forecastDay2: {},
@@ -180,6 +184,10 @@ toggleButton.addEventListener("click", () => {
 });
 async function displayWeather(location) {
   const weather = await processWeather(location);
+  if (weather === 1) {
+    console.log("ERROR OCCURRED");
+    return;
+  }
 
   // Select current DOM
   const city = document.querySelector(".city");
