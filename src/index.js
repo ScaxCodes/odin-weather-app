@@ -105,13 +105,6 @@ const toggleButton = document.querySelector("#toggle");
 searchButton.addEventListener("click", () => {
   if (!inputField.value) return;
   displayWeather(inputField.value);
-  const currentDiv = document.querySelector(".current-container");
-  const forecastDivs = document.querySelectorAll(".forecast");
-  currentDiv.style.display = "flex";
-  forecastDivs.forEach((div) => {
-    div.style.display = "flex";
-  });
-  inputField.value = "";
 });
 
 toggleButton.addEventListener("click", () => {
@@ -123,8 +116,15 @@ async function displayWeather(location) {
 
   if (weather === 1) {
     console.log("ERROR OCCURRED");
-    return;
+    return 1;
   }
+  const currentDiv = document.querySelector(".current-container");
+  const forecastDivs = document.querySelectorAll(".forecast");
+  currentDiv.style.display = "flex";
+  forecastDivs.forEach((div) => {
+    div.style.display = "flex";
+  });
+  inputField.value = "";
 
   // Select current DOM
   const city = document.querySelector(".city");
