@@ -165,6 +165,7 @@ const searchButton = document.querySelector("#search");
 const inputField = document.querySelector("#location");
 const toggleButton = document.querySelector("#toggle");
 searchButton.addEventListener("click", () => {
+  if (!inputField.value) return;
   displayWeather(inputField.value);
   const currentDiv = document.querySelector(".current-container");
   const forecastDivs = document.querySelectorAll(".forecast");
