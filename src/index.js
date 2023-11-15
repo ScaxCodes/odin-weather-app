@@ -116,6 +116,7 @@ async function displayWeather(location) {
 
   if (weather === 1) {
     console.log("ERROR OCCURRED");
+    inputField.value = "";
     return 1;
   }
   const currentDiv = document.querySelector(".current-container");

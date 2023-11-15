@@ -13,7 +13,11 @@ function selectGIF(text) {
     return "//media0.giphy.com/media/98UMeH7pPiOpM5sHDw/giphy.gif";
   else if (text.includes("rain"))
     return "//media1.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif";
-  else if (text.includes("cloud") || text.includes("overcast"))
+  else if (
+    text.includes("cloud") ||
+    text.includes("overcast") ||
+    text.includes("mist")
+  )
     return "//media0.giphy.com/media/gk3s6G7AdUNkey0YpE/giphy.gif";
   else if (text.includes("fog"))
     return "//media3.giphy.com/media/ZWRCWdUymIGNW/giphy.gif";
