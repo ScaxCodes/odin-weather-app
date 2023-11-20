@@ -194,5 +194,3 @@ async function displayWeather(location) {
   // Display GIF
   displayGIF(weather.current.text);
 }
-
-// displayWeather("mainz");

@@ -249,8 +249,6 @@ async function displayWeather(location) {
   // Display GIF
   (0,_gifLogic_js__WEBPACK_IMPORTED_MODULE_0__.displayGIF)(weather.current.text);
 }
-
-// displayWeather("mainz");
 })();
 
 /******/ })()
