@@ -1,4 +1,6 @@
 import { displayGIF } from "./gifLogic.js";
+import "./normalize.css";
+import "./style.css";
 
 let unitIsCelsius = true;
 
