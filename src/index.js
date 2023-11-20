@@ -112,6 +112,20 @@ toggleButton.addEventListener("click", () => {
 });
 
 async function displayWeather(location) {
+  const currentDiv = document.querySelector(".current-container");
+  const forecastDivs = document.querySelectorAll(".forecast");
+  const elementGIF = document.querySelector(".gif");
+  currentDiv.style.display = "none";
+  forecastDivs.forEach((div) => {
+    div.style.display = "none";
+  });
+  elementGIF.style.display = "none";
+
+  const appContainer = document.querySelector(".app-container");
+  const loadingDiv = document.createElement("div");
+  loadingDiv.textContent = "Loading";
+  appContainer.appendChild(loadingDiv);
+
   const weather = await processWeather(location);
 
   if (weather === 1) {
@@ -119,12 +133,14 @@ async function displayWeather(location) {
     inputField.value = "";
     return 1;
   }
-  const currentDiv = document.querySelector(".current-container");
-  const forecastDivs = document.querySelectorAll(".forecast");
+
+  appContainer.removeChild(loadingDiv);
+
   currentDiv.style.display = "flex";
   forecastDivs.forEach((div) => {
     div.style.display = "flex";
   });
+  elementGIF.style.display = "flex";
   inputField.value = "";
 
   // Select current DOM
