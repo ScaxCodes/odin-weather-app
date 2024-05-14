@@ -1,8 +1,21 @@
 import { displayGIF } from "./gifLogic.js";
 import "./normalize.css";
-import "./style.css";
+import "./styles.css";
 
 let unitIsCelsius = true;
+
+/* Refactor
+
+1. Parse API data with destructuring
+  - done
+2. Get location data from user
+3. Render weather with location data
+4. Blur screen while loading
+5. Display 2days data as a grid
+6. Display hourly data as a table
+7. Display town if provided by API
+
+*/
 
 function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
@@ -39,14 +52,71 @@ async function fetchWeather(location) {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
     const response = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`,
-      { mode: "cors" },
+      { mode: "cors" }
     );
-    const weatherJson = await response.json();
-    console.log(weatherJson);
-    return weatherJson;
+    const weather = await response.json();
+    console.log("weather ", weather);
+    console.log("parsedCurrentWeather", parseCurrentWeather(weather));
+    console.log("parsedForecastWeather", parseForecastWeather(weather));
+    console.log("parsedHourlyWeather", parseHourlyWeather(weather));
+    return weather;
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }
+}
+
+function parseCurrentWeather(weather) {
+  const { name } = weather.location;
+  const {
+    temp_c,
+    temp_f,
+    condition: { text, icon },
+  } = weather.current;
+
+  return {
+    name,
+    temp_c,
+    temp_f,
+    text,
+    icon,
+  };
+}
+
+function parseForecastWeather({ forecast: { forecastday } }) {
+  return forecastday.slice(1).map((day) => {
+    return {
+      date: day.date,
+      maxtemp_c: day.day.maxtemp_c,
+      mintemp_c: day.day.mintemp_c,
+      maxtemp_f: day.day.maxtemp_f,
+      mintemp_f: day.day.mintemp_f,
+      text: day.day.condition.text,
+      icon: day.day.condition.icon,
+    };
+  });
+}
+
+function parseHourlyWeather({
+  forecast: {
+    forecastday: [currentDay],
+  },
+  current: { last_updated_epoch: lastUpdatedEpoch },
+}) {
+  // Return only hours from the current hour till midnight
+  return currentDay.hour
+    .filter((hour) => hour.time_epoch > lastUpdatedEpoch - 3600)
+    .map((hour) => {
+      return {
+        timestamp: hour.time_epoch,
+        icon: hour.condition.icon,
+        temp_c: hour.temp_c,
+        temp_f: hour.temp_f,
+        feelslike_c: hour.feelslike_c,
+        feelslike_f: hour.feelslike_f,
+        windSpeed: hour.wind_kph,
+        chanceOfRain: hour.chance_of_rain,
+      };
+    });
 }
 
 async function processWeather(location) {
@@ -97,6 +167,7 @@ async function processWeather(location) {
   weatherSelectedData.forecastDay3.icon =
     weather.forecast.forecastday[2].day.condition.icon;
 
+  // console.log("weatherSeletedData ", weatherSelectedData);
   return weatherSelectedData;
 }
 
