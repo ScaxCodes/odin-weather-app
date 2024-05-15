@@ -9,6 +9,7 @@ let unitIsCelsius = true;
 1. Parse API data with destructuring
   - done
 2. Get location data from user
+  - done
 3. Render weather with location data
 4. Blur screen while loading
 5. Display 2days data as a grid
@@ -16,6 +17,19 @@ let unitIsCelsius = true;
 7. Display town if provided by API
 
 */
+
+navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
+
+function positionSuccess({ coords }) {
+  console.log(coords.latitude, coords.longitude);
+  displayWeather("Mainz", coords.latitude, coords.longitude);
+}
+
+function positionError() {
+  alert(
+    "There was an error getting your location. Please allow us to use your location and refresh the page."
+  );
+}
 
 function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
@@ -47,11 +61,12 @@ function temptoggle() {
   }
 }
 
-async function fetchWeather(location) {
+async function fetchWeather(location, lat, lon) {
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
     const response = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`,
+      // `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${}&days=3`,
       { mode: "cors" }
     );
     const weather = await response.json();
