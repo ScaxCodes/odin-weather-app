@@ -603,7 +603,7 @@ let unitIsCelsius = true;
 */ navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 function positionSuccess({ coords }) {
     console.log(coords.latitude, coords.longitude);
-    displayWeather("Mainz", coords.latitude, coords.longitude);
+    displayWeather("", coords.latitude, coords.longitude);
 }
 function positionError() {
     alert("There was an error getting your location. Please allow us to use your location and refresh the page.");
@@ -635,8 +635,8 @@ function temptoggle() {
 async function fetchWeather(location, lat, lon) {
     try {
         const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`, // `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${}&days=3`,
-        {
+        const response = await fetch(// `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`,
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=3`, {
             mode: "cors"
         });
         const weather = await response.json();
@@ -688,8 +688,8 @@ function parseHourlyWeather({ forecast: { forecastday: [currentDay] }, current: 
         };
     });
 }
-async function processWeather(location) {
-    const weather = await fetchWeather(location);
+async function processWeather(location, lat, lon) {
+    const weather = await fetchWeather(location, lat, lon);
     if (weather.error) {
         console.log("ERROR OCCURRED");
         return 1;
@@ -734,7 +734,7 @@ searchButton.addEventListener("click", ()=>{
 toggleButton.addEventListener("click", ()=>{
     temptoggle();
 });
-async function displayWeather(location) {
+async function displayWeather(location, lat, lon) {
     const currentDiv = document.querySelector(".current-container");
     const forecastDivs = document.querySelectorAll(".forecast");
     const elementGIF = document.querySelector(".gif");
@@ -747,7 +747,7 @@ async function displayWeather(location) {
     const loadingDiv = document.createElement("div");
     loadingDiv.textContent = "Loading";
     appContainer.appendChild(loadingDiv);
-    const weather = await processWeather(location);
+    const weather = await processWeather(location, lat, lon);
     if (weather === 1) {
         console.log("ERROR OCCURRED");
         inputField.value = "";
