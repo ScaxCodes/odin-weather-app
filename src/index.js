@@ -11,24 +11,31 @@ let unitIsCelsius = true;
 2. Get location data from user
   - done
 3. Render weather with location data
+  - done
 4. Blur screen while loading
+  - done
 5. Display 2days data as a grid
 6. Display hourly data as a table
 7. Display town if provided by API
 
 */
 
+const modal = document.querySelector(".loading-modal");
+modal.style.display = "flex";
+
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
 function positionSuccess({ coords }) {
   console.log(coords.latitude, coords.longitude);
   displayWeather("", coords.latitude, coords.longitude);
+  modal.style.display = "none";
 }
 
 function positionError() {
   alert(
     "There was an error getting your location. Please allow us to use your location and refresh the page."
   );
+  modal.style.display = "none";
 }
 
 function temptoggle() {
@@ -209,10 +216,7 @@ async function displayWeather(location, lat, lon) {
   });
   elementGIF.style.display = "none";
 
-  const appContainer = document.querySelector(".app-container");
-  const loadingDiv = document.createElement("div");
-  loadingDiv.textContent = "Loading";
-  appContainer.appendChild(loadingDiv);
+  modal.style.display = "flex";
 
   const weather = await processWeather(location, lat, lon);
 
@@ -222,7 +226,7 @@ async function displayWeather(location, lat, lon) {
     return 1;
   }
 
-  appContainer.removeChild(loadingDiv);
+  modal.style.display = "none";
 
   currentDiv.style.display = "flex";
   forecastDivs.forEach((div) => {
