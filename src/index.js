@@ -14,9 +14,11 @@ let unitIsCelsius = true;
   - done
 4. Blur screen while loading
   - done
-5. Display 2days data as a grid
+5. Display 2days data in a row
+ - done
 6. Display hourly data as a table
 7. Display town if provided by API
+8. Make textsearch working again or delete feature
 
 */
 
