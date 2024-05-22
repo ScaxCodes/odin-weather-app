@@ -1,6 +1,7 @@
 import { displayGIF } from "./gifLogic.js";
 import "./normalize.css";
 import "./styles.css";
+import { format } from "date-fns";
 
 let unitIsCelsius = true;
 
@@ -17,8 +18,12 @@ let unitIsCelsius = true;
 5. Display 2days data in a row
  - done
 6. Display hourly data as a table
+ - done
 7. Display town if provided by API
-8. Make textsearch working again or delete feature
+ - done 
+8. refactor code with new parsed API data
+
+9. Make textsearch working again or delete feature
 
 */
 
@@ -79,10 +84,10 @@ async function fetchWeather(location, lat, lon) {
       { mode: "cors" }
     );
     const weather = await response.json();
-    console.log("weather ", weather);
-    console.log("parsedCurrentWeather", parseCurrentWeather(weather));
-    console.log("parsedForecastWeather", parseForecastWeather(weather));
-    console.log("parsedHourlyWeather", parseHourlyWeather(weather));
+    // console.log("weather ", weather);
+    // console.log("parsedCurrentWeather", parseCurrentWeather(weather));
+    // console.log("parsedForecastWeather", parseForecastWeather(weather));
+    // console.log("parsedHourlyWeather", parseHourlyWeather(weather));
     return weather;
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -153,7 +158,9 @@ async function processWeather(location, lat, lon) {
     current: {},
     forecastDay2: {},
     forecastDay3: {},
+    hourly: parseHourlyWeather(weather),
   };
+
   // Process current weather
   weatherSelectedData.current.name = weather.location.name;
   weatherSelectedData.current.celsius = weather.current.temp_c;
@@ -285,6 +292,44 @@ async function displayWeather(location, lat, lon) {
     div.innerHTML = `<img src="${weather[`forecastDay${index + 2}`].icon}">`;
   });
 
+  console.log(weather);
+  // Render hourly weather
+  const hourlySection = document.querySelector("[data-hour-section]");
+  const hourRowTemplate = document.getElementById("hour-row-template");
+  function renderHourlyWeather(hourly) {
+    hourlySection.innerHTML = "";
+    hourly.forEach((hour) => {
+      const element = hourRowTemplate.content.cloneNode(true);
+      setValue("temp", hour.temp_c, { parent: element });
+      setValue("fl-temp", hour.feelslike_c, { parent: element });
+      setValue("wind", hour.windSpeed, { parent: element });
+      setValue("precip", hour.chanceOfRain, { parent: element });
+      setValue("day", formatDay(hour.timestamp), { parent: element });
+      setValue("time", formatTime(hour.timestamp), { parent: element });
+      element.querySelector("[data-icon]").src = "https://" + hour.icon;
+      hourlySection.append(element);
+    });
+  }
+
+  renderHourlyWeather(weather.hourly);
+
   // Display GIF
-  displayGIF(weather.current.text);
+  // displayGIF(weather.current.text);
+}
+
+function setValue(selector, value, { parent = document } = {}) {
+  parent.querySelector(`[data-${selector}]`).textContent = value;
+}
+
+function formatDay(timestamp) {
+  return format(new Date(timestamp * 1000), "eeee");
+}
+
+function formatTime(timestamp) {
+  return format(new Date(timestamp * 1000), "ha");
+}
+
+function getIconUrl(icon, { large = false } = {}) {
+  const size = large ? "@2x" : "";
+  return `http://openweathermap.org/img/wn/${icon}${size}.png`;
 }

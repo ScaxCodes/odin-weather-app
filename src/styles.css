@@ -136,3 +136,21 @@ input {
     transform: rotate(360deg);
   }
 }
+
+.hour-section {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+}
+
+.hour-row {
+  background-color: #e9adb4;
+}
+
+.hour-row:nth-child(2n) {
+  background-color: #e09ba3;
+}
+
+.hour-row > td {
+  padding: 0.25rem 0.5rem;
+}

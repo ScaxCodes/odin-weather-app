@@ -51,8 +51,55 @@
           </div>
         </div>
       </div>
+      <table class="hour-section">
+        <tbody data-hour-section></tbody>
+      </table>
       <div class="gif"></div>
     </div>
     <div class="loading-modal"><div class="spinner"></div></div>
+
+    <template id="hour-row-template">
+      <tr class="hour-row">
+        <td>
+          <div class="info-group">
+            <div class="label" data-day>Sunday</div>
+            <div data-time>6AM</div>
+          </div>
+        </td>
+        <td>
+          <img
+            class="weather-icon"
+            data-icon
+            src="http://openweathermap.org/img/wn/10d.png"
+          />
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">TEMP</div>
+            <div><span data-temp>22</span>&deg;</div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">FL TEMP</div>
+            <div><span data-fl-temp>24</span>&deg;</div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">WIND</div>
+            <div>
+              <span data-wind>12</span><span class="value-sub-info">mph</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">PRECIP</div>
+            <div><span data-precip>10</span>%</div>
+          </div>
+        </td>
+      </tr>
+    </template>
   </body>
 </html>
