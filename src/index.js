@@ -32,10 +32,11 @@ modal.style.display = "flex";
 
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
-function positionSuccess({ coords }) {
-  console.log(coords.latitude, coords.longitude);
-  displayWeather("", coords.latitude, coords.longitude);
+async function positionSuccess({ coords }) {
+  const weather = await fetchWeather("", coords.latitude, coords.longitude);
   modal.style.display = "none";
+  renderWeather(weather);
+  // displayWeather("", coords.latitude, coords.longitude);
 }
 
 function positionError() {
@@ -147,6 +148,27 @@ function parseHourlyWeather({
       };
     });
 }
+
+function renderWeather(weather) {
+  renderCurrentWeather(weather);
+  renderForecastWeather(weather);
+}
+
+function renderCurrentWeather(weather) {
+  const currentWeather = parseCurrentWeather(weather);
+
+  const currentDiv = document.querySelector(".current-container");
+  currentDiv.style.display = "flex";
+
+  document.querySelector(".city").textContent = currentWeather.name;
+  document.querySelector(".temp").textContent = currentWeather.temp_c;
+  document.querySelector(".temp-f").textContent = currentWeather.temp_f;
+  document.querySelector(".text").textContent = currentWeather.text;
+  const currentIcon = document.querySelector("[data-current-icon]");
+  currentIcon.src = `https:${currentWeather.icon}`;
+}
+
+function renderForecastWeather(weather) {}
 
 async function processWeather(location, lat, lon) {
   const weather = await fetchWeather(location, lat, lon);
@@ -306,7 +328,7 @@ async function displayWeather(location, lat, lon) {
       setValue("precip", hour.chanceOfRain, { parent: element });
       setValue("day", formatDay(hour.timestamp), { parent: element });
       setValue("time", formatTime(hour.timestamp), { parent: element });
-      element.querySelector("[data-icon]").src = "https://" + hour.icon;
+      element.querySelector("[data-icon]").src = "https:" + hour.icon;
       hourlySection.append(element);
     });
   }

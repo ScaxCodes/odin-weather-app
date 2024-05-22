@@ -92,7 +92,6 @@ input {
   font-weight: bold;
 }
 
-.current-container,
 .forecast {
   display: none;
 }
