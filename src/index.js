@@ -152,6 +152,7 @@ function parseHourlyWeather({
 function renderWeather(weather) {
   renderCurrentWeather(weather);
   renderForecastWeather(weather);
+  renderHourlyWeather(parseHourlyWeather(weather));
 }
 
 function renderCurrentWeather(weather) {
@@ -161,8 +162,8 @@ function renderCurrentWeather(weather) {
   currentDiv.style.display = "flex";
 
   document.querySelector(".city").textContent = currentWeather.name;
-  document.querySelector(".temp").textContent = currentWeather.temp_c;
-  document.querySelector(".temp-f").textContent = currentWeather.temp_f;
+  document.querySelector(".temp").textContent = currentWeather.temp_c + "°";
+  document.querySelector(".temp-f").textContent = currentWeather.temp_f + "°";
   document.querySelector(".text").textContent = currentWeather.text;
   const currentIcon = document.querySelector("[data-current-icon]");
   currentIcon.src = `https:${currentWeather.icon}`;
@@ -178,12 +179,29 @@ function renderForecastWeather(weather) {
   forecastWeather.forEach((day) => {
     const element = forecastTemplate.content.cloneNode(true);
     element.querySelector(".date").textContent = day.date;
-    element.querySelector(".temp").textContent = day.maxtemp_c;
-    element.querySelector(".temp-f").textContent = day.maxtemp_f;
+    element.querySelector(".temp").textContent = day.maxtemp_c + "°";
+    element.querySelector(".temp-f").textContent = day.maxtemp_f + "°";
     element.querySelector(".text").textContent = day.text;
     const forecastIcon = element.querySelector("[data-forecast-icon]");
     forecastIcon.src = `https:${day.icon}`;
     forecastSection.append(element);
+  });
+}
+
+function renderHourlyWeather(hourly) {
+  const hourlySection = document.querySelector("[data-hour-section]");
+  const hourRowTemplate = document.getElementById("hour-row-template");
+  hourlySection.innerHTML = "";
+  hourly.forEach((hour) => {
+    const element = hourRowTemplate.content.cloneNode(true);
+    setValue("temp", hour.temp_c, { parent: element });
+    setValue("fl-temp", hour.feelslike_c, { parent: element });
+    setValue("wind", hour.windSpeed, { parent: element });
+    setValue("precip", hour.chanceOfRain, { parent: element });
+    setValue("day", formatDay(hour.timestamp), { parent: element });
+    setValue("time", formatTime(hour.timestamp), { parent: element });
+    element.querySelector("[data-icon]").src = "https:" + hour.icon;
+    hourlySection.append(element);
   });
 }
 
@@ -330,27 +348,6 @@ async function displayWeather(location, lat, lon) {
   iconForecast.forEach((div, index) => {
     div.innerHTML = `<img src="${weather[`forecastDay${index + 2}`].icon}">`;
   });
-
-  console.log(weather);
-  // Render hourly weather
-  const hourlySection = document.querySelector("[data-hour-section]");
-  const hourRowTemplate = document.getElementById("hour-row-template");
-  function renderHourlyWeather(hourly) {
-    hourlySection.innerHTML = "";
-    hourly.forEach((hour) => {
-      const element = hourRowTemplate.content.cloneNode(true);
-      setValue("temp", hour.temp_c, { parent: element });
-      setValue("fl-temp", hour.feelslike_c, { parent: element });
-      setValue("wind", hour.windSpeed, { parent: element });
-      setValue("precip", hour.chanceOfRain, { parent: element });
-      setValue("day", formatDay(hour.timestamp), { parent: element });
-      setValue("time", formatTime(hour.timestamp), { parent: element });
-      element.querySelector("[data-icon]").src = "https:" + hour.icon;
-      hourlySection.append(element);
-    });
-  }
-
-  renderHourlyWeather(weather.hourly);
 
   // Display GIF
   // displayGIF(weather.current.text);
