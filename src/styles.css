@@ -92,7 +92,8 @@ input {
   font-weight: bold;
 }
 
-.forecast {
+.current-container,
+.forecast-container {
   display: none;
 }
 

@@ -168,7 +168,24 @@ function renderCurrentWeather(weather) {
   currentIcon.src = `https:${currentWeather.icon}`;
 }
 
-function renderForecastWeather(weather) {}
+function renderForecastWeather(weather) {
+  const forecastWeather = parseForecastWeather(weather);
+
+  const forecastSection = document.querySelector(".forecast-container");
+  const forecastTemplate = document.getElementById("forecast-template");
+  forecastSection.style.display = "flex";
+
+  forecastWeather.forEach((day) => {
+    const element = forecastTemplate.content.cloneNode(true);
+    element.querySelector(".date").textContent = day.date;
+    element.querySelector(".temp").textContent = day.maxtemp_c;
+    element.querySelector(".temp-f").textContent = day.maxtemp_f;
+    element.querySelector(".text").textContent = day.text;
+    const forecastIcon = element.querySelector("[data-forecast-icon]");
+    forecastIcon.src = `https:${day.icon}`;
+    forecastSection.append(element);
+  });
+}
 
 async function processWeather(location, lat, lon) {
   const weather = await fetchWeather(location, lat, lon);
