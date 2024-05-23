@@ -23,6 +23,7 @@ let unitIsCelsius = true;
 8. refactor code with new parsed API data
  - done
 9. Make textsearch working again or delete feature
+- done
 10. Enhance styling
 
 */
@@ -33,7 +34,7 @@ modal.style.display = "flex";
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
 async function positionSuccess({ coords }) {
-  const weather = await fetchWeather("", coords.latitude, coords.longitude);
+  const weather = await fetchWeather(null, coords.latitude, coords.longitude);
   modal.style.display = "none";
   renderWeather(weather);
 }
@@ -75,13 +76,23 @@ function temptoggle() {
   }
 }
 
-async function fetchWeather(location, lat, lon) {
+async function fetchWeather(location = null, lat, lon) {
+  if (location === null) console.log("hi");
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
-    const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=3`,
-      { mode: "cors" }
-    );
+    let response;
+    if (location === null) {
+      response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=3`,
+        { mode: "cors" }
+      );
+    } else {
+      response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`,
+        { mode: "cors" }
+      );
+    }
+
     const weather = await response.json();
     return weather;
   } catch (error) {
@@ -170,6 +181,7 @@ function renderForecastWeather(weather) {
   const forecastTemplate = document.getElementById("forecast-template");
   forecastSection.style.display = "flex";
 
+  forecastSection.innerHTML = "";
   forecastWeather.forEach((day) => {
     const element = forecastTemplate.content.cloneNode(true);
     element.querySelector(".date").textContent = day.date;
@@ -205,9 +217,12 @@ const searchButton = document.querySelector("#search");
 const inputField = document.querySelector("#location");
 const toggleButton = document.querySelector("#toggle");
 
-searchButton.addEventListener("click", () => {
+searchButton.addEventListener("click", async () => {
   if (!inputField.value) return;
-  displayWeather(inputField.value);
+  modal.style.display = "flex";
+  const weather = await fetchWeather(inputField.value);
+  modal.style.display = "none";
+  renderWeather(weather);
 });
 
 toggleButton.addEventListener("click", () => {
