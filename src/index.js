@@ -1,4 +1,3 @@
-import { displayGIF } from "./gifLogic.js";
 import "./normalize.css";
 import "./styles.css";
 import { format } from "date-fns";
@@ -22,6 +21,7 @@ let unitIsCelsius = true;
 7. Display town if provided by API
  - done 
 8. refactor code with new parsed API data
+ - done
 
 9. Make textsearch working again or delete feature
 
