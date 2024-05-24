@@ -25,6 +25,9 @@ let unitIsCelsius = true;
 9. Make textsearch working again or delete feature
 - done
 10. Enhance styling
+- current weather bigger than forecast
+- convert date to weekday name
+11. Enable toggle fahrenheit for all temperatures
 
 */
 
@@ -77,7 +80,6 @@ function temptoggle() {
 }
 
 async function fetchWeather(location = null, lat, lon) {
-  if (location === null) console.log("hi");
   try {
     const API_KEY = "6d61c6b48aad4c6a9d0195337232810";
     let response;
@@ -121,6 +123,7 @@ function parseForecastWeather({ forecast: { forecastday } }) {
   return forecastday.slice(1).map((day) => {
     return {
       date: day.date,
+      day: format(day.date, "eeee"),
       maxtemp_c: day.day.maxtemp_c,
       mintemp_c: day.day.mintemp_c,
       maxtemp_f: day.day.maxtemp_f,
@@ -184,7 +187,7 @@ function renderForecastWeather(weather) {
   forecastSection.innerHTML = "";
   forecastWeather.forEach((day) => {
     const element = forecastTemplate.content.cloneNode(true);
-    element.querySelector(".date").textContent = day.date;
+    element.querySelector(".date").textContent = day.day;
     element.querySelector(".temp").textContent = day.maxtemp_c + "°";
     element.querySelector(".temp-f").textContent = day.maxtemp_f + "°";
     element.querySelector(".text").textContent = day.text;
