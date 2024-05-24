@@ -18,7 +18,7 @@ body {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   width: 750px;
   background-color: #f1c5ca;
   padding: 10px;
@@ -34,6 +34,8 @@ body {
   border: 1px solid #be2d3b;
   border-radius: 10px;
   padding: 10px;
+  background-color: #e9b8be;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .temp-toggle div,
@@ -77,6 +79,8 @@ input {
   border: 1px solid #be2d3b;
   border-radius: 10px;
   padding: 10px;
+  background-color: #e9b8be;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .forecast * {
