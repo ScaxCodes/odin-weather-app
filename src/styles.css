@@ -27,10 +27,10 @@ body {
 }
 
 .current-container {
-  width: 500px;
+  width: 510px;
   display: flex;
-  gap: 20px;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   border: 1px solid #be2d3b;
   border-radius: 10px;
   padding: 10px;
@@ -60,13 +60,17 @@ input {
   border: 1px solid black;
 }
 
+.current-container .icon img {
+  width: 100px;
+}
+
 .forecast-container {
   display: flex;
   gap: 10px;
 }
 
 .forecast {
-  width: 350px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -75,16 +79,20 @@ input {
   padding: 10px;
 }
 
-.footer-container {
+.forecast * {
+  font-size: 0.9rem;
+}
+
+.header-container {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: center;
 }
 
 .current-container .text,
-.footer-container .text {
+.header-container .text {
   width: 250px;
-  margin-right: auto;
 }
 
 .city,
@@ -145,6 +153,10 @@ input {
 
 .hour-row {
   background-color: #e9adb4;
+}
+
+.hour-row * {
+  font-size: 0.9rem;
 }
 
 .hour-row:nth-child(2n) {

@@ -25,32 +25,15 @@
         <button id="toggle">Toggle Celsius/Fahrenheit</button>
       </div>
       <div class="current-container">
-        <div class="city"></div>
+        <div class="header-container">
+          <div class="city"></div>
+          <div class="icon"><img data-current-icon /></div>
+        </div>
         <div class="temp"></div>
         <div class="temp-f"></div>
         <div class="text"></div>
-        <div class="icon"><img data-current-icon /></div>
       </div>
-      <div class="forecast-container">
-        <!-- <div class="forecast">
-          <div class="date"></div>
-          <div class="temp"></div>
-          <div class="temp-f"></div>
-          <div class="footer-container">
-            <div class="text"></div>
-            <div class="icon"></div>
-          </div>
-        </div>
-        <div class="forecast">
-          <div class="date"></div>
-          <div class="temp"></div>
-          <div class="temp-f"></div>
-          <div class="footer-container">
-            <div class="text"></div>
-            <div class="icon"></div>
-          </div>
-        </div> -->
-      </div>
+      <div class="forecast-container"></div>
       <table class="hour-section">
         <tbody data-hour-section></tbody>
       </table>
@@ -103,13 +86,14 @@
     </template>
     <template id="forecast-template">
       <div class="forecast">
-        <div class="date"></div>
-        <div class="temp"></div>
-        <div class="temp-f"></div>
-        <div class="footer-container">
-          <div class="text"></div>
+        <div class="header-container">
+          <div class="date"></div>
           <div class="icon"><img data-forecast-icon /></div>
         </div>
+
+        <div class="temp"></div>
+        <div class="temp-f"></div>
+        <div class="text"></div>
       </div>
     </template>
   </body>

@@ -26,8 +26,11 @@ let unitIsCelsius = true;
 - done
 10. Enhance styling
 - current weather bigger than forecast
+  - done
 - convert date to weekday name
+  - done
 11. Enable toggle fahrenheit for all temperatures
+12. responsive design
 
 */
 
