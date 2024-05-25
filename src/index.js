@@ -32,7 +32,9 @@ let unitIsCelsius = true;
 11. Enable toggle fahrenheit for all temperatures
  - done
 12. responsive design
+ - done
 13. handle bad text input
+14. fix bug when toggling c/f in responsive mode
 
 */
 

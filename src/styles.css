@@ -96,7 +96,7 @@ input {
 
 .current-container .text,
 .header-container .text {
-  width: 250px;
+  /* width: 250px; */
 }
 
 .city,
@@ -169,4 +169,26 @@ input {
 
 .hour-row > td {
   padding: 0.25rem 0.5rem;
+}
+
+@media (max-width: 600px) {
+  * {
+    font-size: 1.1rem;
+  }
+
+  .fl-temp {
+    display: none;
+  }
+
+  /* .app-container {
+    width: 380px;
+  } */
+
+  .current-container {
+    width: 370px;
+  }
+
+  .forecast {
+    width: 180px;
+  }
 }
