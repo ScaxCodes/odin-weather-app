@@ -31,6 +31,7 @@ let unitIsCelsius = true;
   - done
 11. Enable toggle fahrenheit for all temperatures
 12. responsive design
+13. handle bad text input
 
 */
 
@@ -56,6 +57,8 @@ function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
   const celsiusDisplays = document.querySelectorAll(".temp");
   const fahrenheitDisplays = document.querySelectorAll(".temp-f");
+  const celsiusTables = document.querySelectorAll("td.temp");
+  const fahrenheitTables = document.querySelectorAll("td.temp-f");
 
   if (unitIsCelsius) {
     temperatureUnitDisplay.textContent = "Fahrenheit";
@@ -68,6 +71,14 @@ function temptoggle() {
     fahrenheitDisplays.forEach((div) => {
       div.style.display = "block";
     });
+
+    celsiusTables.forEach((div) => {
+      div.style.display = "none";
+    });
+
+    fahrenheitTables.forEach((div) => {
+      div.style.display = "table-cell";
+    });
   } else {
     temperatureUnitDisplay.textContent = "Celsius";
     unitIsCelsius = true;
@@ -77,6 +88,14 @@ function temptoggle() {
     });
 
     fahrenheitDisplays.forEach((div) => {
+      div.style.display = "none";
+    });
+
+    celsiusTables.forEach((div) => {
+      div.style.display = "table-cell";
+    });
+
+    fahrenheitTables.forEach((div) => {
       div.style.display = "none";
     });
   }
