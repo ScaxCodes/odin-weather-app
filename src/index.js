@@ -30,6 +30,7 @@ let unitIsCelsius = true;
 - convert date to weekday name
   - done
 11. Enable toggle fahrenheit for all temperatures
+ - done
 12. responsive design
 13. handle bad text input
 
@@ -229,6 +230,8 @@ function renderHourlyWeather(weather) {
     const element = hourRowTemplate.content.cloneNode(true);
     setValue("temp", hour.temp_c, { parent: element });
     setValue("fl-temp", hour.feelslike_c, { parent: element });
+    setValue("temp-f", hour.temp_f, { parent: element });
+    setValue("fl-temp-f", hour.feelslike_f, { parent: element });
     setValue("wind", hour.windSpeed, { parent: element });
     setValue("precip", hour.chanceOfRain, { parent: element });
     setValue("day", formatDay(hour.timestamp), { parent: element });
