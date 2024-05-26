@@ -33,7 +33,8 @@ let unitIsCelsius = true;
  - done
 12. responsive design
  - done
-13. handle bad text input
+13. clear field after input search
+- done
 14. fix bug when toggling c/f in responsive mode
 
 */
@@ -252,6 +253,7 @@ searchButton.addEventListener("click", async () => {
   modal.style.display = "flex";
   const weather = await fetchWeather(inputField.value);
   modal.style.display = "none";
+  inputField.value = "";
   renderWeather(weather);
 });
 
