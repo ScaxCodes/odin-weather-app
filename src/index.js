@@ -36,6 +36,7 @@ let unitIsCelsius = true;
 13. clear field after input search
 - done
 14. fix bug when toggling c/f in responsive mode
+- done
 
 */
 
@@ -59,8 +60,8 @@ function positionError() {
 
 function temptoggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
-  const celsiusDisplays = document.querySelectorAll(".temp");
-  const fahrenheitDisplays = document.querySelectorAll(".temp-f");
+  const celsiusDisplays = document.querySelectorAll("div.temp");
+  const fahrenheitDisplays = document.querySelectorAll("div.temp-f");
   const celsiusTables = document.querySelectorAll("td.temp");
   const fahrenheitTables = document.querySelectorAll("td.temp-f");
 

@@ -94,11 +94,6 @@ input {
   justify-content: center;
 }
 
-.current-container .text,
-.header-container .text {
-  /* width: 250px; */
-}
-
 .city,
 .date {
   font-weight: bold;
@@ -177,7 +172,7 @@ input {
   }
 
   .fl-temp {
-    display: none;
+    display: none !important;
   }
 
   /* .app-container {
