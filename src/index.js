@@ -4,50 +4,14 @@ import { format } from "date-fns";
 
 let unitIsCelsius = true;
 
-/* Refactor
-
-1. Parse API data with destructuring
-  - done
-2. Get location data from user
-  - done
-3. Render weather with location data
-  - done
-4. Blur screen while loading
-  - done
-5. Display 2days data in a row
- - done
-6. Display hourly data as a table
- - done
-7. Display town if provided by API
- - done 
-8. refactor code with new parsed API data
- - done
-9. Make textsearch working again or delete feature
-- done
-10. Enhance styling
-- current weather bigger than forecast
-  - done
-- convert date to weekday name
-  - done
-11. Enable toggle fahrenheit for all temperatures
- - done
-12. responsive design
- - done
-13. clear field after input search
-- done
-14. fix bug when toggling c/f in responsive mode
-- done
-
-*/
-
-const modal = document.querySelector(".loading-modal");
-modal.style.display = "flex";
+const loadingSpinnerModal = document.querySelector(".loading-modal");
+loadingSpinnerModal.style.display = "flex";
 
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
 async function positionSuccess({ coords }) {
   const weather = await fetchWeather(null, coords.latitude, coords.longitude);
-  modal.style.display = "none";
+  loadingSpinnerModal.style.display = "none";
   renderWeather(weather);
 }
 
@@ -55,15 +19,13 @@ function positionError() {
   alert(
     "There was an error getting your location. Please allow us to use your location and refresh the page."
   );
-  modal.style.display = "none";
+  loadingSpinnerModal.style.display = "none";
 }
 
-function temptoggle() {
+function tempToggle() {
   const temperatureUnitDisplay = document.querySelector(".temp-toggle div");
-  const celsiusDisplays = document.querySelectorAll("div.temp");
-  const fahrenheitDisplays = document.querySelectorAll("div.temp-f");
-  const celsiusTables = document.querySelectorAll("td.temp");
-  const fahrenheitTables = document.querySelectorAll("td.temp-f");
+  const celsiusDisplays = document.querySelectorAll(".temp");
+  const fahrenheitDisplays = document.querySelectorAll(".temp-f");
 
   if (unitIsCelsius) {
     temperatureUnitDisplay.textContent = "Fahrenheit";
@@ -74,33 +36,19 @@ function temptoggle() {
     });
 
     fahrenheitDisplays.forEach((div) => {
-      div.style.display = "block";
-    });
-
-    celsiusTables.forEach((div) => {
-      div.style.display = "none";
-    });
-
-    fahrenheitTables.forEach((div) => {
-      div.style.display = "table-cell";
+      if (div.tagName == "DIV") div.style.display = "block";
+      else if (div.tagName == "TD") div.style.display = "table-cell";
     });
   } else {
     temperatureUnitDisplay.textContent = "Celsius";
     unitIsCelsius = true;
 
     celsiusDisplays.forEach((div) => {
-      div.style.display = "block";
+      if (div.tagName == "DIV") div.style.display = "block";
+      else if (div.tagName == "TD") div.style.display = "table-cell";
     });
 
     fahrenheitDisplays.forEach((div) => {
-      div.style.display = "none";
-    });
-
-    celsiusTables.forEach((div) => {
-      div.style.display = "table-cell";
-    });
-
-    fahrenheitTables.forEach((div) => {
       div.style.display = "none";
     });
   }
@@ -251,15 +199,15 @@ const toggleButton = document.querySelector("#toggle");
 
 searchButton.addEventListener("click", async () => {
   if (!inputField.value) return;
-  modal.style.display = "flex";
+  loadingSpinnerModal.style.display = "flex";
   const weather = await fetchWeather(inputField.value);
-  modal.style.display = "none";
+  loadingSpinnerModal.style.display = "none";
   inputField.value = "";
   renderWeather(weather);
 });
 
 toggleButton.addEventListener("click", () => {
-  temptoggle();
+  tempToggle();
 });
 
 function setValue(selector, value, { parent = document } = {}) {
