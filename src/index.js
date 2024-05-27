@@ -31,25 +31,25 @@ function tempToggle() {
     temperatureUnitDisplay.textContent = "Fahrenheit";
     unitIsCelsius = false;
 
-    celsiusDisplays.forEach((div) => {
-      div.style.display = "none";
+    celsiusDisplays.forEach((element) => {
+      element.style.display = "none";
     });
 
-    fahrenheitDisplays.forEach((div) => {
-      if (div.tagName == "DIV") div.style.display = "block";
-      else if (div.tagName == "TD") div.style.display = "table-cell";
+    fahrenheitDisplays.forEach((element) => {
+      if (element.tagName == "DIV") element.style.display = "block";
+      else if (element.tagName == "TD") element.style.display = "table-cell";
     });
   } else {
     temperatureUnitDisplay.textContent = "Celsius";
     unitIsCelsius = true;
 
-    celsiusDisplays.forEach((div) => {
-      if (div.tagName == "DIV") div.style.display = "block";
-      else if (div.tagName == "TD") div.style.display = "table-cell";
+    celsiusDisplays.forEach((element) => {
+      if (element.tagName == "DIV") element.style.display = "block";
+      else if (element.tagName == "TD") element.style.display = "table-cell";
     });
 
-    fahrenheitDisplays.forEach((div) => {
-      div.style.display = "none";
+    fahrenheitDisplays.forEach((element) => {
+      element.style.display = "none";
     });
   }
 }
@@ -144,6 +144,9 @@ function renderCurrentWeather(weather) {
   const currentDiv = document.querySelector(".current-container");
   currentDiv.style.display = "flex";
 
+  currentWeather.temp_c = Math.round(currentWeather.temp_c);
+  currentWeather.temp_c = Math.round(currentWeather.temp_f);
+
   document.querySelector(".city").textContent = currentWeather.name;
   document.querySelector(".temp").textContent = currentWeather.temp_c + "°";
   document.querySelector(".temp-f").textContent = currentWeather.temp_f + "°";
@@ -161,6 +164,8 @@ function renderForecastWeather(weather) {
 
   forecastSection.innerHTML = "";
   forecastWeather.forEach((day) => {
+    day.maxtemp_c = Math.round(day.maxtemp_c);
+    day.maxtemp_f = Math.round(day.maxtemp_f);
     const element = forecastTemplate.content.cloneNode(true);
     element.querySelector(".date").textContent = day.day;
     element.querySelector(".temp").textContent = day.maxtemp_c + "°";
@@ -179,6 +184,10 @@ function renderHourlyWeather(weather) {
   const hourRowTemplate = document.getElementById("hour-row-template");
   hourlySection.innerHTML = "";
   hourlyWeather.forEach((hour) => {
+    hour.temp_c = Math.round(hour.temp_c);
+    hour.feelslike_c = Math.round(hour.feelslike_c);
+    hour.temp_f = Math.round(hour.temp_f);
+    hour.feelslike_f = Math.round(hour.feelslike_f);
     const element = hourRowTemplate.content.cloneNode(true);
     setValue("temp", hour.temp_c, { parent: element });
     setValue("fl-temp", hour.feelslike_c, { parent: element });
