@@ -1,8 +1,8 @@
+/* Global Styles */
 * {
   box-sizing: border-box;
   font-size: 1.2rem;
   line-height: 1.5;
-  /* https://css-tricks.com/snippets/css/system-font-stack/ below: */
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -13,10 +13,17 @@ body {
   background-color: #f8e2e4;
 }
 
+/* Global Buttons and Inputs */
+button,
+input {
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+/* App Container */
 .app-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   gap: 16px;
   width: 750px;
@@ -26,6 +33,7 @@ body {
   border-radius: 10px;
 }
 
+/* Current Container */
 .current-container {
   width: 510px;
   display: flex;
@@ -38,6 +46,22 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.current-container .icon img {
+  width: 100px;
+}
+
+/* Forecast Container */
+.forecast-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* Temperature Toggle */
+.temp-toggle {
+  display: flex;
+  gap: 10px;
+}
+
 .temp-toggle div,
 .temp-toggle button {
   font-size: 0.7rem;
@@ -47,30 +71,7 @@ body {
   width: 70px;
 }
 
-.temp-toggle {
-  display: flex;
-  gap: 10px;
-}
-
-button {
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-input {
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-.current-container .icon img {
-  width: 100px;
-}
-
-.forecast-container {
-  display: flex;
-  gap: 10px;
-}
-
+/* Forecast */
 .forecast {
   width: 250px;
   display: flex;
@@ -87,6 +88,7 @@ input {
   font-size: 0.9rem;
 }
 
+/* Header */
 .header-container {
   display: flex;
   gap: 10px;
@@ -99,19 +101,37 @@ input {
   font-weight: bold;
 }
 
+/* Hidden Elements on Loadup */
 .current-container,
-.forecast-container {
-  display: none;
-}
-
+.forecast-container,
 .temp-f {
   display: none;
 }
 
-.gif img {
-  border-radius: 10px;
+/* Hour Section */
+.hour-section {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
 }
 
+.hour-row {
+  background-color: #e9adb4;
+}
+
+.hour-row * {
+  font-size: 0.9rem;
+}
+
+.hour-row:nth-child(2n) {
+  background-color: #e09ba3;
+}
+
+.hour-row > td {
+  padding: 0.25rem 0.5rem;
+}
+
+/* Loading Modal */
 .loading-modal {
   position: fixed;
   top: 0;
@@ -144,28 +164,7 @@ input {
   }
 }
 
-.hour-section {
-  width: 100%;
-  text-align: center;
-  border-spacing: 0;
-}
-
-.hour-row {
-  background-color: #e9adb4;
-}
-
-.hour-row * {
-  font-size: 0.9rem;
-}
-
-.hour-row:nth-child(2n) {
-  background-color: #e09ba3;
-}
-
-.hour-row > td {
-  padding: 0.25rem 0.5rem;
-}
-
+/* Media Queries for Responsiveness */
 @media (max-width: 600px) {
   * {
     font-size: 1.1rem;
@@ -174,10 +173,6 @@ input {
   .fl-temp {
     display: none !important;
   }
-
-  /* .app-container {
-    width: 380px;
-  } */
 
   .current-container {
     width: 370px;
