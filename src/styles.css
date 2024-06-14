@@ -14,10 +14,39 @@ body {
 }
 
 /* Global Buttons and Inputs */
-button,
 input {
   border-radius: 5px;
   border: 1px solid black;
+  padding: 5px;
+}
+
+button {
+  background-color: #e14e4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #b74242;
+}
+
+#search {
+  margin-left: 10px;
+}
+
+.temp-toggle button {
+  padding: 5px 10px;
+  background-color: #e09ba3;
+  color: initial;
+}
+
+.temp-toggle button:hover {
+  background-color: #c5878d;
 }
 
 /* App Container */
@@ -60,6 +89,7 @@ input {
 .temp-toggle {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .temp-toggle div,
