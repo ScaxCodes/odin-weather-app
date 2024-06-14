@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ScaxCodes Weather Forecast</title>
-    <script src="index.js" type="module" defer></script>
+    <link rel="stylesheet" href="./index.2212206d.css" />
+    <script src="./index.975ef6c8.js" defer=""></script>
   </head>
   <body>
     <div class="app-container">
@@ -15,7 +16,7 @@
             name="location"
             id="location"
             placeholder="Enter a city..."
-            required
+            required=""
           />
           <button type="submit" id="search">Search</button>
         </form>
@@ -27,7 +28,7 @@
       <div class="current-container">
         <div class="header-container">
           <div class="city"></div>
-          <div class="icon"><img data-current-icon /></div>
+          <div class="icon"><img data-current-icon="" /></div>
         </div>
         <div class="temp"></div>
         <div class="temp-f"></div>
@@ -35,7 +36,7 @@
       </div>
       <div class="forecast-container"></div>
       <table class="hour-section">
-        <tbody data-hour-section></tbody>
+        <tbody data-hour-section=""></tbody>
       </table>
       <div class="gif"></div>
     </div>
@@ -45,53 +46,54 @@
       <tr class="hour-row">
         <td>
           <div class="info-group">
-            <div class="label" data-day>Sunday</div>
-            <div data-time>6AM</div>
+            <div class="label" data-day="">Sunday</div>
+            <div data-time="">6AM</div>
           </div>
         </td>
         <td>
           <img
             class="weather-icon"
-            data-icon
+            data-icon=""
             src="https://cdn.weatherapi.com/weather/64x64/day/176.png"
           />
         </td>
         <td class="temp">
           <div class="info-group">
             <div class="label">TEMP</div>
-            <div><span data-temp>22</span>&deg;</div>
+            <div><span data-temp="">22</span>&deg;</div>
           </div>
         </td>
         <td class="temp fl-temp">
           <div class="info-group">
             <div class="label">FL TEMP</div>
-            <div><span data-fl-temp>24</span>&deg;</div>
+            <div><span data-fl-temp="">24</span>&deg;</div>
           </div>
         </td>
         <td class="temp-f">
           <div class="info-group">
             <div class="label">TEMP</div>
-            <div><span data-temp-f>22</span>&deg;</div>
+            <div><span data-temp-f="">22</span>&deg;</div>
           </div>
         </td>
         <td class="temp-f fl-temp">
           <div class="info-group">
             <div class="label">FL TEMP</div>
-            <div><span data-fl-temp-f>24</span>&deg;</div>
+            <div><span data-fl-temp-f="">24</span>&deg;</div>
           </div>
         </td>
         <td>
           <div class="info-group">
             <div class="label">WIND</div>
             <div>
-              <span data-wind>12</span><span class="value-sub-info">mph</span>
+              <span data-wind="">12</span
+              ><span class="value-sub-info">mph</span>
             </div>
           </div>
         </td>
         <td>
           <div class="info-group">
             <div class="label">PRECIP</div>
-            <div><span data-precip>10</span>%</div>
+            <div><span data-precip="">10</span>%</div>
           </div>
         </td>
       </tr>
@@ -100,7 +102,7 @@
       <div class="forecast">
         <div class="header-container">
           <div class="date"></div>
-          <div class="icon"><img data-forecast-icon /></div>
+          <div class="icon"><img data-forecast-icon="" /></div>
         </div>
 
         <div class="temp"></div>
