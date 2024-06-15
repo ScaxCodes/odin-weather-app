@@ -23,6 +23,10 @@ Die App ruft Wetterdaten von der WeatherAPI ab. Sie zeigt Benutzern aktuelle Wet
 - Wechsle zwischen Celsius und Fahrenheit, indem du auf den "Celsius/Fahrenheit umschalten" Button klickst.
 - Sieh dir das aktuelle Wetter, die 3-Tage-Vorhersage und die stündlichen Wetteraktualisierungen an.
 
+## Herausforderungen und Lösungen
+
+- Um mit der umfangreichen Datenmenge der WeatherAPI umzugehen, wurden die Daten mithilfe von Object Destructuring so geparst, dass für die App nur noch die relevanten Informationen bereitgestellt werden.
+
 ## Zukünftige Funktionen und Ideen
 
 - **Bessere Visualisierung der Wetterbedingungen:** Implementierung von Animationen oder visuellen Hinweisen basierend auf den Wetterbedingungen (z.B. Regenanimationen, sonniges Hintergrundbild).
