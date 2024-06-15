@@ -1,4 +1,4 @@
-<div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+<div style="display: flex; align-items: center; justify-content: center; gap: 10px;" align="center">
     <img src="readme-img/screenshot.png" alt="Bildschirmfoto der App">
 </div>
 
