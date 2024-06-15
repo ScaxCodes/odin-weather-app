@@ -2,15 +2,9 @@
     <img src="readme-img/screenshot.png" alt="Bildschirmfoto der App">
 </div>
 
-# Wetter App
+# Wetter App 🌤️📱
 
-## Einführung
-
-Dieses Projekt ist eine Wetter App, die mit HTML, CSS und JavaScript entwickelt wurde. Sie ruft Wetterdaten von der WeatherAPI ab und zeigt aktuelle Wetterbedingungen, eine 3-Tage-Vorhersage und stündliche Wetteraktualisierungen für den Standort des Benutzers oder eine angegebene Stadt an.
-
-## Projektbeschreibung
-
-Die App bietet Benutzern aktuelle Wetterinformationen, einschließlich Temperatur, Wetterbedingungen, Windgeschwindigkeit, Niederschlagschance und mehr. Sie ermöglicht dynamisches Umschalten zwischen Celsius- und Fahrenheit-Einheiten und unterstützt Geolokalisierung für die automatische Wetterabfrage.
+Die App ruft Wetterdaten von der WeatherAPI ab. Sie zeigt Benutzern aktuelle Wetterbedingungen, eine 3-Tage-Vorhersage sowie stündliche Wetteraktualisierungen für den Standort des Benutzers oder eine angegebene Stadt an. Die App ermöglicht das dynamische Umschalten zwischen Celsius- und Fahrenheit-Einheiten und unterstützt Geolokalisierung für die automatische Wetterabfrage.
 
 ## Funktionen
 
@@ -29,7 +23,7 @@ Die App bietet Benutzern aktuelle Wetterinformationen, einschließlich Temperatu
 - Wechsle zwischen Celsius und Fahrenheit, indem du auf den "Celsius/Fahrenheit umschalten" Button klickst.
 - Sieh dir das aktuelle Wetter, die 3-Tage-Vorhersage und die stündlichen Wetteraktualisierungen an.
 
-## Verbesserungen
+## Zukünftige Funktionen und Ideen
 
 - **Bessere Visualisierung der Wetterbedingungen:** Implementierung von Animationen oder visuellen Hinweisen basierend auf den Wetterbedingungen (z.B. Regenanimationen, sonniges Hintergrundbild).
 - **Angepasste Anzeige für verschiedene Wetterbedingungen:** Zeige Wettericons und Daten interaktiver oder thematischer an, basierend auf der aktuellen Wetterlage (z.B. animierte Wolken für bewölktes Wetter).
@@ -37,6 +31,16 @@ Die App bietet Benutzern aktuelle Wetterinformationen, einschließlich Temperatu
 - **Anzeigen von mehreren Tagen für die Vorhersage** Um eine längere Vorhersage anzeigen zu können, wäre eine kostenpflichtige Version der API erforderlich. Die derzeitige kostenlose Version ermöglicht nur eine Vorhersage von bis zu 2 Tagen.
 - **Auslagern des API-Keys in einen Backend-Server:** Um den API-Key sicher zu halten, wäre es empfehlenswert, diesen in einem Backend-Server zu speichern. Obwohl dies für die aktuelle kostenlose API weniger problematisch ist, plane ich, dies zu tun, sobald ich fortgeschrittene Kenntnisse in Node.js erworben habe.
 
+## Technologien
+
+- HTML
+- CSS
+- JavaScript
+
+## Autor
+
+[ScaxCodes](https://github.com/ScaxCodes)
+
 ## Lizenz
 
-- Dieses Projekt ist unter der MIT-Lizenz lizenziert.
+Dieses Projekt ist unter der [MIT-Lizenz](https://opensource.org/licenses/MIT) lizenziert.
